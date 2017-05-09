@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "SearchAndFindGurra", "SearchAndFindGurra\SearchAndFindGurra.cproj", "{9B462622-EC8F-41F4-BF79-717E266606CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B462622-EC8F-41F4-BF79-717E266606CE}.Debug|AVR.ActiveCfg = Debug|AVR
+		{9B462622-EC8F-41F4-BF79-717E266606CE}.Debug|AVR.Build.0 = Debug|AVR
+		{9B462622-EC8F-41F4-BF79-717E266606CE}.Release|AVR.ActiveCfg = Release|AVR
+		{9B462622-EC8F-41F4-BF79-717E266606CE}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

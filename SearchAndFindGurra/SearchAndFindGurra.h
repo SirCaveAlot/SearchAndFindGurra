@@ -46,8 +46,14 @@ int left_x_pos();
 
 int left_y_pos();
 
-void set_coordinate_in_array_to_five(int y, int x);
+void set_coordinate_in_array(int y, int x, int value);
 
 void save_detected_walls_in_array();
+
+bool drive_nearest_path();
+
+bool detect_path(int next_yposition,int next_xposition);
+
+void nearest_path_to_array();
 
 #endif /* SEARCHANDFINDGURRA_H_ */

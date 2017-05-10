@@ -13,6 +13,7 @@ Common symbol       size              file
 xpos                0x2               SearchAndFindGurra.o
 robot_array         0x692             SearchAndFindGurra.o
 direction           0x2               SearchAndFindGurra.o
+nearest_path_array  0x692             SearchAndFindGurra.o
 ypos                0x2               SearchAndFindGurra.o
 left_distance       0x2               SearchAndFindGurra.o
 right_distance      0x2               SearchAndFindGurra.o
@@ -29,12 +30,24 @@ Discarded input sections
  .bss           0x00000000        0x0 SearchAndFindGurra.o
  .text.robot_set_direction
                 0x00000000        0xa SearchAndFindGurra.o
+ .text.robot_xpos_right
+                0x00000000       0x4c SearchAndFindGurra.o
+ .text.robot_ypos_right
+                0x00000000       0x4c SearchAndFindGurra.o
+ .text.back_at_start
+                0x00000000       0x34 SearchAndFindGurra.o
+ .text.detect_wall
+                0x00000000       0x4a SearchAndFindGurra.o
+ .text.detect_path
+                0x00000000       0x2c SearchAndFindGurra.o
  .text.robot_move_distance
                 0x00000000       0x2a SearchAndFindGurra.o
- .text.set_coordinate_in_array_to_five
-                0x00000000       0x26 SearchAndFindGurra.o
- .text.set_coordinate_in_array_to_one
-                0x00000000       0x26 SearchAndFindGurra.o
+ .text.save_detected_walls_in_array
+                0x00000000      0x17c SearchAndFindGurra.o
+ .text.robot_keep_right
+                0x00000000       0x86 SearchAndFindGurra.o
+ .data.map_array
+                0x00000000      0x692 SearchAndFindGurra.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
@@ -201,7 +214,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x5a4
+.text           0x00000000      0x40e
  *(.vectors)
  .vectors       0x00000000       0x8c c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51/crtm1284p.o
                 0x00000000                __vector_default
@@ -295,58 +308,49 @@ END GROUP
                 0x000000c6                __vector_20
                 0x000000c8                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x000000c8       0x24 main.o
+ .text.main     0x000000c8       0x52 main.o
                 0x000000c8                main
+ .text.nearest_path_to_array
+                0x0000011a       0x44 SearchAndFindGurra.o
+                0x0000011a                nearest_path_to_array
  .text.robot_turn_right
-                0x000000ec       0x56 SearchAndFindGurra.o
-                0x000000ec                robot_turn_right
+                0x0000015e       0x56 SearchAndFindGurra.o
+                0x0000015e                robot_turn_right
  .text.robot_turn_left
-                0x00000142       0x56 SearchAndFindGurra.o
-                0x00000142                robot_turn_left
+                0x000001b4       0x56 SearchAndFindGurra.o
+                0x000001b4                robot_turn_left
  .text.next_y_position
-                0x00000198       0x1e SearchAndFindGurra.o
-                0x00000198                next_y_position
+                0x0000020a       0x1e SearchAndFindGurra.o
+                0x0000020a                next_y_position
  .text.next_x_position
-                0x000001b6       0x1e SearchAndFindGurra.o
-                0x000001b6                next_x_position
- .text.robot_xpos_right
-                0x000001d4       0x44 SearchAndFindGurra.o
-                0x000001d4                robot_xpos_right
- .text.robot_ypos_right
-                0x00000218       0x44 SearchAndFindGurra.o
-                0x00000218                robot_ypos_right
- .text.back_at_start
-                0x0000025c       0x30 SearchAndFindGurra.o
-                0x0000025c                back_at_start
- .text.detect_wall
-                0x0000028c       0x4a SearchAndFindGurra.o
-                0x0000028c                detect_wall
+                0x00000228       0x1e SearchAndFindGurra.o
+                0x00000228                next_x_position
  .text.robot_move
-                0x000002d6       0x2a SearchAndFindGurra.o
-                0x000002d6                robot_move
+                0x00000246       0x2a SearchAndFindGurra.o
+                0x00000246                robot_move
+ .text.set_coordinate_in_array
+                0x00000270       0x22 SearchAndFindGurra.o
+                0x00000270                set_coordinate_in_array
  .text.right_x_pos
-                0x00000300       0x24 SearchAndFindGurra.o
-                0x00000300                right_x_pos
+                0x00000292       0x24 SearchAndFindGurra.o
+                0x00000292                right_x_pos
  .text.right_y_pos
-                0x00000324       0x30 SearchAndFindGurra.o
-                0x00000324                right_y_pos
+                0x000002b6       0x30 SearchAndFindGurra.o
+                0x000002b6                right_y_pos
  .text.left_x_pos
-                0x00000354       0x24 SearchAndFindGurra.o
-                0x00000354                left_x_pos
+                0x000002e6       0x24 SearchAndFindGurra.o
+                0x000002e6                left_x_pos
  .text.left_y_pos
-                0x00000378       0x54 SearchAndFindGurra.o
-                0x00000378                left_y_pos
- .text.save_detected_walls_in_array
-                0x000003cc      0x168 SearchAndFindGurra.o
-                0x000003cc                save_detected_walls_in_array
- .text.robot_keep_right
-                0x00000534       0x6c SearchAndFindGurra.o
-                0x00000534                robot_keep_right
-                0x000005a0                . = ALIGN (0x2)
+                0x0000030a       0x54 SearchAndFindGurra.o
+                0x0000030a                left_y_pos
+ .text.drive_nearest_path
+                0x0000035e       0xac SearchAndFindGurra.o
+                0x0000035e                drive_nearest_path
+                0x0000040a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000005a0        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
-                0x000005a0                _exit
-                0x000005a0                exit
+ .fini9         0x0000040a        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+                0x0000040a                _exit
+                0x0000040a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -365,46 +369,47 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000005a0        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .fini0         0x0000040a        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x000005a4                _etext = .
+                0x0000040e                _etext = .
 
-.data           0x00800100      0x692 load address 0x000005a4
+.data           0x00800100       0x2a load address 0x0000040e
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.Maparray
-                0x00800100      0x692 SearchAndFindGurra.o
-                0x00800100                Maparray
+ .data.gurras_array
+                0x00800100       0x2a SearchAndFindGurra.o
+                0x00800100                gurras_array
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x00800792                . = ALIGN (0x2)
-                0x00800792                _edata = .
-                0x00800792                PROVIDE (__data_end, .)
+                0x0080012a                . = ALIGN (0x2)
+                0x0080012a                _edata = .
+                0x0080012a                PROVIDE (__data_end, .)
 
-.bss            0x00800792      0x69c
-                0x00800792                PROVIDE (__bss_start, .)
+.bss            0x0080012a      0xd2e
+                0x0080012a                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800792      0x69c SearchAndFindGurra.o
-                0x00800792                xpos
-                0x00800794                robot_array
-                0x00800e26                direction
-                0x00800e28                ypos
-                0x00800e2a                left_distance
-                0x00800e2c                right_distance
-                0x00800e2e                PROVIDE (__bss_end, .)
-                0x000005a4                __data_load_start = LOADADDR (.data)
-                0x00000c36                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080012a      0xd2e SearchAndFindGurra.o
+                0x0080012a                xpos
+                0x0080012c                robot_array
+                0x008007be                direction
+                0x008007c0                nearest_path_array
+                0x00800e52                ypos
+                0x00800e54                left_distance
+                0x00800e56                right_distance
+                0x00800e58                PROVIDE (__bss_end, .)
+                0x0000040e                __data_load_start = LOADADDR (.data)
+                0x00000438                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800e2e        0x0
-                0x00800e2e                PROVIDE (__noinit_start, .)
+.noinit         0x00800e58        0x0
+                0x00800e58                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800e2e                PROVIDE (__noinit_end, .)
-                0x00800e2e                _end = .
-                0x00800e2e                PROVIDE (__heap_start, .)
+                0x00800e58                PROVIDE (__noinit_end, .)
+                0x00800e58                _end = .
+                0x00800e58                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -464,46 +469,46 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xd0
+.debug_aranges  0x00000000       0xe0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 main.o
  .debug_aranges
-                0x00000020       0xb0 SearchAndFindGurra.o
+                0x00000020       0xc0 SearchAndFindGurra.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x927
+.debug_info     0x00000000      0xc1b
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000       0xbc main.o
- .debug_info    0x000000bc      0x86b SearchAndFindGurra.o
+ .debug_info    0x00000000      0x1fb main.o
+ .debug_info    0x000001fb      0xa20 SearchAndFindGurra.o
 
-.debug_abbrev   0x00000000      0x2a0
+.debug_abbrev   0x00000000      0x333
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0x78 main.o
- .debug_abbrev  0x00000078      0x228 SearchAndFindGurra.o
+ .debug_abbrev  0x00000000       0xc0 main.o
+ .debug_abbrev  0x000000c0      0x273 SearchAndFindGurra.o
 
-.debug_line     0x00000000      0x4d1
+.debug_line     0x00000000      0x591
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000       0x6d main.o
- .debug_line    0x0000006d      0x464 SearchAndFindGurra.o
+ .debug_line    0x00000000       0x8b main.o
+ .debug_line    0x0000008b      0x506 SearchAndFindGurra.o
 
-.debug_frame    0x00000000      0x1ac
+.debug_frame    0x00000000      0x1e0
  *(.debug_frame)
  .debug_frame   0x00000000       0x24 main.o
- .debug_frame   0x00000024      0x188 SearchAndFindGurra.o
+ .debug_frame   0x00000024      0x1bc SearchAndFindGurra.o
 
-.debug_str      0x00000000      0x32c
+.debug_str      0x00000000      0x361
  *(.debug_str)
- .debug_str     0x00000000      0x130 main.o
-                                0x178 (size before relaxing)
- .debug_str     0x00000130      0x1fc SearchAndFindGurra.o
-                                0x377 (size before relaxing)
+ .debug_str     0x00000000      0x19f main.o
+                                0x1e7 (size before relaxing)
+ .debug_str     0x0000019f      0x1c2 SearchAndFindGurra.o
+                                0x3ac (size before relaxing)
 
-.debug_loc      0x00000000      0x619
+.debug_loc      0x00000000      0x7c4
  *(.debug_loc)
- .debug_loc     0x00000000      0x619 SearchAndFindGurra.o
+ .debug_loc     0x00000000      0x7c4 SearchAndFindGurra.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -523,10 +528,10 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xb0
+.debug_ranges   0x00000000       0xc0
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x10 main.o
- .debug_ranges  0x00000010       0xa0 SearchAndFindGurra.o
+ .debug_ranges  0x00000010       0xb0 SearchAndFindGurra.o
 
 .debug_macro
  *(.debug_macro)

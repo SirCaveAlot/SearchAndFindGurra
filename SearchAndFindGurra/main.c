@@ -12,13 +12,19 @@ int main(void)
 	xpos = 14;
 	ypos = 14;
 	direction = 8;
+	set_coordinate_in_array(ypos, xpos, 4);	
+	set_coordinate_in_array(left_y_pos() , left_x_pos(), 5);	
+	set_coordinate_in_array(right_y_pos() , right_x_pos(), 5);	
+	robot_move();
+	nearest_path_to_array();
 	//(right_distance = 100;
 	//left_distance = 100;
 	/* Replace with your application code */
 	while (1)
 	{
 
-		robot_keep_right();
+		//robot_keep_right();
+		drive_nearest_path();
 		//robot_move();
 	}
 }

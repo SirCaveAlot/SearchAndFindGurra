@@ -15,7 +15,7 @@
 #define down 2
 #define left 4 
 #define right 6
-#define wall 1 
+//#define wall 1 
 
 
 int xpos;
@@ -60,8 +60,32 @@ int map_array[29][29] =
 	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}  // 28
 };
 
-
 int robot_array[29][29];
+
+int nearest_path_array[29][29]; //contains the coordinates with the nearest path
+
+int gurras_array[7][3] = //example of what gurras_array might look like
+{
+	{14, 14, 6,} ,
+	{13, 14, 5,} ,
+	{12, 14, 4,} ,
+	{11, 14, 3,} ,
+	{11, 15, 2,} ,
+	{11, 16, 1,} ,
+	{12, 16, 0,} 
+};
+
+void nearest_path_to_array() //takes the coordinates from gurras_array and puts it in nearest_path_array[29][29]
+{
+	int m = 0; 
+	while(gurras_array[m][2] != 0)
+	{			
+		nearest_path_array[gurras_array[m][0]][gurras_array[m][1]] = 3;
+		m++;
+	}
+	
+	
+}
 
 //changing robot direction to given direction
 void robot_set_direction(int next_direction)
@@ -229,7 +253,20 @@ bool detect_wall(int next_yposition,int next_xposition)
 	
 }
 
-void robot_move()
+bool detect_path(int next_yposition,int next_xposition) //detects if coordinate is given path coordinate
+{
+	if(nearest_path_array[next_yposition][next_xposition] == 3)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	
+}
+
+void robot_move() //moves robot one coordinate forward
 {
 	xpos = next_x_position(direction);
 	ypos = next_y_position(direction);
@@ -273,12 +310,37 @@ void robot_keep_right()
 	}
 }
 
-void set_coordinate_in_array(int y, int x, int value)
+bool drive_nearest_path() //follows given path from gurras_array
+{
+	if(detect_path(next_y_position(direction), next_x_position(direction)))
+	{
+		robot_move(); 
+		return false;
+	}
+	else if(detect_path(right_y_pos(), right_x_pos()))
+	{
+		robot_turn_right();
+		return false;
+	}
+	else if(detect_path(left_y_pos(), left_x_pos()))
+	{
+		robot_turn_left();
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+	set_coordinate_in_array(ypos, xpos, 1);
+}
+
+
+
+void set_coordinate_in_array(int y, int x, int value) //sets coordinate in array to value
 {
 	robot_array[y][x] = value;
 }
 
-{
 	
 	/*
 void set_coordinate_in_array(int y, int x, int value)
@@ -288,8 +350,7 @@ void set_coordinate_in_array(int y, int x, int value)
 
 */
 	
-void save_detected_walls_in_array()
-{	
+void save_detected_walls_in_array() //saves detected walls  as 5 and detected free space as 1 in array
 	set_coordinate_in_array(ypos, xpos, 1);
 	//if(right_distance < 150)
 	if(map_array[right_y_pos()][right_x_pos()] >= 5)

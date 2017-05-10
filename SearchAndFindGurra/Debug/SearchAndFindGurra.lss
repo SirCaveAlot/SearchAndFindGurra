@@ -3,29 +3,29 @@ SearchAndFindGurra.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000692  00800100  000005a4  00000638  2**0
+  0 .data         0000002a  00800100  0000040e  000004a2  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000005a4  00000000  00000000  00000094  2**1
+  1 .text         0000040e  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000069c  00800792  00800792  00000cca  2**0
+  2 .bss          00000d2e  0080012a  0080012a  000004cc  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000cca  2**0
+  3 .comment      00000030  00000000  00000000  000004cc  2**0
                   CONTENTS, READONLY
-  4 .debug_aranges 000000d0  00000000  00000000  00000cfa  2**0
+  4 .debug_aranges 000000e0  00000000  00000000  000004fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000927  00000000  00000000  00000dca  2**0
+  5 .debug_info   00000c1b  00000000  00000000  000005dc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000002a0  00000000  00000000  000016f1  2**0
+  6 .debug_abbrev 00000333  00000000  00000000  000011f7  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000004d1  00000000  00000000  00001991  2**0
+  7 .debug_line   00000591  00000000  00000000  0000152a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000001ac  00000000  00000000  00001e64  2**2
+  8 .debug_frame  000001e0  00000000  00000000  00001abc  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000032c  00000000  00000000  00002010  2**0
+  9 .debug_str    00000361  00000000  00000000  00001c9c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000619  00000000  00000000  0000233c  2**0
+ 10 .debug_loc    000007c4  00000000  00000000  00001ffd  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 000000b0  00000000  00000000  00002955  2**0
+ 11 .debug_ranges 000000c0  00000000  00000000  000027c1  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -111,35 +111,35 @@ Disassembly of section .text:
   96:	cd bf       	out	0x3d, r28	; 61
 
 00000098 <__do_copy_data>:
-  98:	17 e0       	ldi	r17, 0x07	; 7
+  98:	11 e0       	ldi	r17, 0x01	; 1
   9a:	a0 e0       	ldi	r26, 0x00	; 0
   9c:	b1 e0       	ldi	r27, 0x01	; 1
-  9e:	e4 ea       	ldi	r30, 0xA4	; 164
-  a0:	f5 e0       	ldi	r31, 0x05	; 5
+  9e:	ee e0       	ldi	r30, 0x0E	; 14
+  a0:	f4 e0       	ldi	r31, 0x04	; 4
   a2:	00 e0       	ldi	r16, 0x00	; 0
   a4:	0b bf       	out	0x3b, r16	; 59
   a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
   a8:	07 90       	elpm	r0, Z+
   aa:	0d 92       	st	X+, r0
-  ac:	a2 39       	cpi	r26, 0x92	; 146
+  ac:	aa 32       	cpi	r26, 0x2A	; 42
   ae:	b1 07       	cpc	r27, r17
   b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
 
 000000b2 <__do_clear_bss>:
   b2:	2e e0       	ldi	r18, 0x0E	; 14
-  b4:	a2 e9       	ldi	r26, 0x92	; 146
-  b6:	b7 e0       	ldi	r27, 0x07	; 7
+  b4:	aa e2       	ldi	r26, 0x2A	; 42
+  b6:	b1 e0       	ldi	r27, 0x01	; 1
   b8:	01 c0       	rjmp	.+2      	; 0xbc <.do_clear_bss_start>
 
 000000ba <.do_clear_bss_loop>:
   ba:	1d 92       	st	X+, r1
 
 000000bc <.do_clear_bss_start>:
-  bc:	ae 32       	cpi	r26, 0x2E	; 46
+  bc:	a8 35       	cpi	r26, 0x58	; 88
   be:	b2 07       	cpc	r27, r18
   c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
   c2:	02 d0       	rcall	.+4      	; 0xc8 <main>
-  c4:	6d c2       	rjmp	.+1242   	; 0x5a0 <_exit>
+  c4:	a2 c1       	rjmp	.+836    	; 0x40a <_exit>
 
 000000c6 <__bad_interrupt>:
   c6:	9c cf       	rjmp	.-200    	; 0x0 <__vectors>
@@ -153,772 +153,555 @@ int main(void)
 	xpos = 14;
   c8:	8e e0       	ldi	r24, 0x0E	; 14
   ca:	90 e0       	ldi	r25, 0x00	; 0
-  cc:	90 93 93 07 	sts	0x0793, r25
-  d0:	80 93 92 07 	sts	0x0792, r24
+  cc:	90 93 2b 01 	sts	0x012B, r25
+  d0:	80 93 2a 01 	sts	0x012A, r24
 	ypos = 14;
-  d4:	90 93 29 0e 	sts	0x0E29, r25
-  d8:	80 93 28 0e 	sts	0x0E28, r24
+  d4:	90 93 53 0e 	sts	0x0E53, r25
+  d8:	80 93 52 0e 	sts	0x0E52, r24
 	direction = 8;
   dc:	88 e0       	ldi	r24, 0x08	; 8
   de:	90 e0       	ldi	r25, 0x00	; 0
-  e0:	90 93 27 0e 	sts	0x0E27, r25
-  e4:	80 93 26 0e 	sts	0x0E26, r24
-	//left_distance = 100;
+  e0:	90 93 bf 07 	sts	0x07BF, r25
+  e4:	80 93 be 07 	sts	0x07BE, r24
+	set_coordinate_in_array(ypos, xpos, 4);	
+  e8:	44 e0       	ldi	r20, 0x04	; 4
+  ea:	50 e0       	ldi	r21, 0x00	; 0
+  ec:	6e e0       	ldi	r22, 0x0E	; 14
+  ee:	70 e0       	ldi	r23, 0x00	; 0
+  f0:	8e e0       	ldi	r24, 0x0E	; 14
+  f2:	90 e0       	ldi	r25, 0x00	; 0
+  f4:	bd d0       	rcall	.+378    	; 0x270 <set_coordinate_in_array>
+	set_coordinate_in_array(left_y_pos() , left_x_pos(), 5);	
+  f6:	f7 d0       	rcall	.+494    	; 0x2e6 <left_x_pos>
+  f8:	ec 01       	movw	r28, r24
+  fa:	07 d1       	rcall	.+526    	; 0x30a <left_y_pos>
+  fc:	45 e0       	ldi	r20, 0x05	; 5
+  fe:	50 e0       	ldi	r21, 0x00	; 0
+ 100:	be 01       	movw	r22, r28
+ 102:	b6 d0       	rcall	.+364    	; 0x270 <set_coordinate_in_array>
+	set_coordinate_in_array(right_y_pos() , right_x_pos(), 5);	
+ 104:	c6 d0       	rcall	.+396    	; 0x292 <right_x_pos>
+ 106:	ec 01       	movw	r28, r24
+ 108:	d6 d0       	rcall	.+428    	; 0x2b6 <right_y_pos>
+ 10a:	45 e0       	ldi	r20, 0x05	; 5
+ 10c:	50 e0       	ldi	r21, 0x00	; 0
+ 10e:	be 01       	movw	r22, r28
+ 110:	af d0       	rcall	.+350    	; 0x270 <set_coordinate_in_array>
+	robot_move();
+ 112:	99 d0       	rcall	.+306    	; 0x246 <robot_move>
+	nearest_path_to_array();
+ 114:	02 d0       	rcall	.+4      	; 0x11a <nearest_path_to_array>
 	/* Replace with your application code */
 	while (1)
 	{
 
-		robot_keep_right();
-  e8:	25 d2       	rcall	.+1098   	; 0x534 <robot_keep_right>
-  ea:	fe cf       	rjmp	.-4      	; 0xe8 <main+0x20>
+		//robot_keep_right();
+		drive_nearest_path();
+ 116:	23 d1       	rcall	.+582    	; 0x35e <drive_nearest_path>
+ 118:	fe cf       	rjmp	.-4      	; 0x116 <main+0x4e>
 
-000000ec <robot_turn_right>:
-	robot_array[y][x] = 5;
-}
-
-void set_coordinate_in_array_to_one(int y, int x)
+0000011a <nearest_path_to_array>:
 {
-	robot_array[y][x] = 1;
-  ec:	80 91 26 0e 	lds	r24, 0x0E26
-  f0:	90 91 27 0e 	lds	r25, 0x0E27
-  f4:	88 30       	cpi	r24, 0x08	; 8
-  f6:	91 05       	cpc	r25, r1
-  f8:	39 f4       	brne	.+14     	; 0x108 <robot_turn_right+0x1c>
-  fa:	86 e0       	ldi	r24, 0x06	; 6
-  fc:	90 e0       	ldi	r25, 0x00	; 0
-  fe:	90 93 27 0e 	sts	0x0E27, r25
- 102:	80 93 26 0e 	sts	0x0E26, r24
- 106:	08 95       	ret
- 108:	86 30       	cpi	r24, 0x06	; 6
- 10a:	91 05       	cpc	r25, r1
- 10c:	39 f4       	brne	.+14     	; 0x11c <robot_turn_right+0x30>
- 10e:	82 e0       	ldi	r24, 0x02	; 2
- 110:	90 e0       	ldi	r25, 0x00	; 0
- 112:	90 93 27 0e 	sts	0x0E27, r25
- 116:	80 93 26 0e 	sts	0x0E26, r24
- 11a:	08 95       	ret
- 11c:	82 30       	cpi	r24, 0x02	; 2
- 11e:	91 05       	cpc	r25, r1
- 120:	39 f4       	brne	.+14     	; 0x130 <robot_turn_right+0x44>
- 122:	84 e0       	ldi	r24, 0x04	; 4
- 124:	90 e0       	ldi	r25, 0x00	; 0
- 126:	90 93 27 0e 	sts	0x0E27, r25
- 12a:	80 93 26 0e 	sts	0x0E26, r24
- 12e:	08 95       	ret
- 130:	04 97       	sbiw	r24, 0x04	; 4
- 132:	31 f4       	brne	.+12     	; 0x140 <robot_turn_right+0x54>
- 134:	88 e0       	ldi	r24, 0x08	; 8
- 136:	90 e0       	ldi	r25, 0x00	; 0
- 138:	90 93 27 0e 	sts	0x0E27, r25
- 13c:	80 93 26 0e 	sts	0x0E26, r24
- 140:	08 95       	ret
-
-00000142 <robot_turn_left>:
- 142:	80 91 26 0e 	lds	r24, 0x0E26
- 146:	90 91 27 0e 	lds	r25, 0x0E27
- 14a:	88 30       	cpi	r24, 0x08	; 8
- 14c:	91 05       	cpc	r25, r1
- 14e:	39 f4       	brne	.+14     	; 0x15e <robot_turn_left+0x1c>
- 150:	84 e0       	ldi	r24, 0x04	; 4
- 152:	90 e0       	ldi	r25, 0x00	; 0
- 154:	90 93 27 0e 	sts	0x0E27, r25
- 158:	80 93 26 0e 	sts	0x0E26, r24
+	for(int i = 0; i < number_of_steps; i++)
+	{
+		robot_move();
+	}
+}
+ 11a:	80 91 04 01 	lds	r24, 0x0104
+ 11e:	90 91 05 01 	lds	r25, 0x0105
+ 122:	89 2b       	or	r24, r25
+ 124:	d9 f0       	breq	.+54     	; 0x15c <nearest_path_to_array+0x42>
+ 126:	e0 e0       	ldi	r30, 0x00	; 0
+ 128:	f1 e0       	ldi	r31, 0x01	; 1
+ 12a:	4d e1       	ldi	r20, 0x1D	; 29
+ 12c:	23 e0       	ldi	r18, 0x03	; 3
+ 12e:	30 e0       	ldi	r19, 0x00	; 0
+ 130:	80 81       	ld	r24, Z
+ 132:	91 81       	ldd	r25, Z+1	; 0x01
+ 134:	48 9f       	mul	r20, r24
+ 136:	d0 01       	movw	r26, r0
+ 138:	49 9f       	mul	r20, r25
+ 13a:	b0 0d       	add	r27, r0
+ 13c:	11 24       	eor	r1, r1
+ 13e:	82 81       	ldd	r24, Z+2	; 0x02
+ 140:	93 81       	ldd	r25, Z+3	; 0x03
+ 142:	a8 0f       	add	r26, r24
+ 144:	b9 1f       	adc	r27, r25
+ 146:	aa 0f       	add	r26, r26
+ 148:	bb 1f       	adc	r27, r27
+ 14a:	a0 54       	subi	r26, 0x40	; 64
+ 14c:	b8 4f       	sbci	r27, 0xF8	; 248
+ 14e:	2d 93       	st	X+, r18
+ 150:	3c 93       	st	X, r19
+ 152:	36 96       	adiw	r30, 0x06	; 6
+ 154:	84 81       	ldd	r24, Z+4	; 0x04
+ 156:	95 81       	ldd	r25, Z+5	; 0x05
+ 158:	89 2b       	or	r24, r25
+ 15a:	51 f7       	brne	.-44     	; 0x130 <nearest_path_to_array+0x16>
  15c:	08 95       	ret
- 15e:	86 30       	cpi	r24, 0x06	; 6
- 160:	91 05       	cpc	r25, r1
- 162:	39 f4       	brne	.+14     	; 0x172 <robot_turn_left+0x30>
- 164:	88 e0       	ldi	r24, 0x08	; 8
- 166:	90 e0       	ldi	r25, 0x00	; 0
- 168:	90 93 27 0e 	sts	0x0E27, r25
- 16c:	80 93 26 0e 	sts	0x0E26, r24
- 170:	08 95       	ret
- 172:	82 30       	cpi	r24, 0x02	; 2
- 174:	91 05       	cpc	r25, r1
- 176:	39 f4       	brne	.+14     	; 0x186 <robot_turn_left+0x44>
- 178:	86 e0       	ldi	r24, 0x06	; 6
- 17a:	90 e0       	ldi	r25, 0x00	; 0
- 17c:	90 93 27 0e 	sts	0x0E27, r25
- 180:	80 93 26 0e 	sts	0x0E26, r24
- 184:	08 95       	ret
- 186:	04 97       	sbiw	r24, 0x04	; 4
- 188:	31 f4       	brne	.+12     	; 0x196 <robot_turn_left+0x54>
- 18a:	82 e0       	ldi	r24, 0x02	; 2
- 18c:	90 e0       	ldi	r25, 0x00	; 0
- 18e:	90 93 27 0e 	sts	0x0E27, r25
- 192:	80 93 26 0e 	sts	0x0E26, r24
- 196:	08 95       	ret
 
-00000198 <next_y_position>:
- 198:	9c 01       	movw	r18, r24
- 19a:	80 91 28 0e 	lds	r24, 0x0E28
- 19e:	90 91 29 0e 	lds	r25, 0x0E29
- 1a2:	28 30       	cpi	r18, 0x08	; 8
- 1a4:	31 05       	cpc	r19, r1
- 1a6:	11 f4       	brne	.+4      	; 0x1ac <next_y_position+0x14>
- 1a8:	01 97       	sbiw	r24, 0x01	; 1
- 1aa:	08 95       	ret
- 1ac:	22 30       	cpi	r18, 0x02	; 2
- 1ae:	31 05       	cpc	r19, r1
- 1b0:	09 f4       	brne	.+2      	; 0x1b4 <next_y_position+0x1c>
- 1b2:	01 96       	adiw	r24, 0x01	; 1
- 1b4:	08 95       	ret
+0000015e <robot_turn_right>:
+ 15e:	80 91 be 07 	lds	r24, 0x07BE
+ 162:	90 91 bf 07 	lds	r25, 0x07BF
+ 166:	88 30       	cpi	r24, 0x08	; 8
+ 168:	91 05       	cpc	r25, r1
+ 16a:	39 f4       	brne	.+14     	; 0x17a <robot_turn_right+0x1c>
+ 16c:	86 e0       	ldi	r24, 0x06	; 6
+ 16e:	90 e0       	ldi	r25, 0x00	; 0
+ 170:	90 93 bf 07 	sts	0x07BF, r25
+ 174:	80 93 be 07 	sts	0x07BE, r24
+ 178:	08 95       	ret
+ 17a:	86 30       	cpi	r24, 0x06	; 6
+ 17c:	91 05       	cpc	r25, r1
+ 17e:	39 f4       	brne	.+14     	; 0x18e <robot_turn_right+0x30>
+ 180:	82 e0       	ldi	r24, 0x02	; 2
+ 182:	90 e0       	ldi	r25, 0x00	; 0
+ 184:	90 93 bf 07 	sts	0x07BF, r25
+ 188:	80 93 be 07 	sts	0x07BE, r24
+ 18c:	08 95       	ret
+ 18e:	82 30       	cpi	r24, 0x02	; 2
+ 190:	91 05       	cpc	r25, r1
+ 192:	39 f4       	brne	.+14     	; 0x1a2 <robot_turn_right+0x44>
+ 194:	84 e0       	ldi	r24, 0x04	; 4
+ 196:	90 e0       	ldi	r25, 0x00	; 0
+ 198:	90 93 bf 07 	sts	0x07BF, r25
+ 19c:	80 93 be 07 	sts	0x07BE, r24
+ 1a0:	08 95       	ret
+ 1a2:	04 97       	sbiw	r24, 0x04	; 4
+ 1a4:	31 f4       	brne	.+12     	; 0x1b2 <robot_turn_right+0x54>
+ 1a6:	88 e0       	ldi	r24, 0x08	; 8
+ 1a8:	90 e0       	ldi	r25, 0x00	; 0
+ 1aa:	90 93 bf 07 	sts	0x07BF, r25
+ 1ae:	80 93 be 07 	sts	0x07BE, r24
+ 1b2:	08 95       	ret
 
-000001b6 <next_x_position>:
- 1b6:	9c 01       	movw	r18, r24
- 1b8:	80 91 92 07 	lds	r24, 0x0792
- 1bc:	90 91 93 07 	lds	r25, 0x0793
- 1c0:	26 30       	cpi	r18, 0x06	; 6
- 1c2:	31 05       	cpc	r19, r1
- 1c4:	11 f4       	brne	.+4      	; 0x1ca <next_x_position+0x14>
- 1c6:	01 96       	adiw	r24, 0x01	; 1
- 1c8:	08 95       	ret
- 1ca:	24 30       	cpi	r18, 0x04	; 4
- 1cc:	31 05       	cpc	r19, r1
- 1ce:	09 f4       	brne	.+2      	; 0x1d2 <next_x_position+0x1c>
- 1d0:	01 97       	sbiw	r24, 0x01	; 1
- 1d2:	08 95       	ret
-
-000001d4 <robot_xpos_right>:
- 1d4:	80 91 26 0e 	lds	r24, 0x0E26
- 1d8:	90 91 27 0e 	lds	r25, 0x0E27
- 1dc:	88 30       	cpi	r24, 0x08	; 8
- 1de:	91 05       	cpc	r25, r1
- 1e0:	21 f4       	brne	.+8      	; 0x1ea <robot_xpos_right+0x16>
- 1e2:	86 e0       	ldi	r24, 0x06	; 6
- 1e4:	90 e0       	ldi	r25, 0x00	; 0
- 1e6:	e7 cf       	rjmp	.-50     	; 0x1b6 <next_x_position>
- 1e8:	08 95       	ret
- 1ea:	82 30       	cpi	r24, 0x02	; 2
- 1ec:	91 05       	cpc	r25, r1
- 1ee:	21 f4       	brne	.+8      	; 0x1f8 <robot_xpos_right+0x24>
- 1f0:	84 e0       	ldi	r24, 0x04	; 4
- 1f2:	90 e0       	ldi	r25, 0x00	; 0
- 1f4:	e0 cf       	rjmp	.-64     	; 0x1b6 <next_x_position>
+000001b4 <robot_turn_left>:
+ 1b4:	80 91 be 07 	lds	r24, 0x07BE
+ 1b8:	90 91 bf 07 	lds	r25, 0x07BF
+ 1bc:	88 30       	cpi	r24, 0x08	; 8
+ 1be:	91 05       	cpc	r25, r1
+ 1c0:	39 f4       	brne	.+14     	; 0x1d0 <robot_turn_left+0x1c>
+ 1c2:	84 e0       	ldi	r24, 0x04	; 4
+ 1c4:	90 e0       	ldi	r25, 0x00	; 0
+ 1c6:	90 93 bf 07 	sts	0x07BF, r25
+ 1ca:	80 93 be 07 	sts	0x07BE, r24
+ 1ce:	08 95       	ret
+ 1d0:	86 30       	cpi	r24, 0x06	; 6
+ 1d2:	91 05       	cpc	r25, r1
+ 1d4:	39 f4       	brne	.+14     	; 0x1e4 <robot_turn_left+0x30>
+ 1d6:	88 e0       	ldi	r24, 0x08	; 8
+ 1d8:	90 e0       	ldi	r25, 0x00	; 0
+ 1da:	90 93 bf 07 	sts	0x07BF, r25
+ 1de:	80 93 be 07 	sts	0x07BE, r24
+ 1e2:	08 95       	ret
+ 1e4:	82 30       	cpi	r24, 0x02	; 2
+ 1e6:	91 05       	cpc	r25, r1
+ 1e8:	39 f4       	brne	.+14     	; 0x1f8 <robot_turn_left+0x44>
+ 1ea:	86 e0       	ldi	r24, 0x06	; 6
+ 1ec:	90 e0       	ldi	r25, 0x00	; 0
+ 1ee:	90 93 bf 07 	sts	0x07BF, r25
+ 1f2:	80 93 be 07 	sts	0x07BE, r24
  1f6:	08 95       	ret
- 1f8:	86 30       	cpi	r24, 0x06	; 6
- 1fa:	91 05       	cpc	r25, r1
- 1fc:	21 f4       	brne	.+8      	; 0x206 <robot_xpos_right+0x32>
- 1fe:	82 e0       	ldi	r24, 0x02	; 2
- 200:	90 e0       	ldi	r25, 0x00	; 0
- 202:	d9 cf       	rjmp	.-78     	; 0x1b6 <next_x_position>
- 204:	08 95       	ret
- 206:	04 97       	sbiw	r24, 0x04	; 4
- 208:	21 f4       	brne	.+8      	; 0x212 <robot_xpos_right+0x3e>
- 20a:	88 e0       	ldi	r24, 0x08	; 8
- 20c:	90 e0       	ldi	r25, 0x00	; 0
- 20e:	d3 cf       	rjmp	.-90     	; 0x1b6 <next_x_position>
- 210:	08 95       	ret
- 212:	80 e0       	ldi	r24, 0x00	; 0
- 214:	90 e0       	ldi	r25, 0x00	; 0
- 216:	08 95       	ret
+ 1f8:	04 97       	sbiw	r24, 0x04	; 4
+ 1fa:	31 f4       	brne	.+12     	; 0x208 <robot_turn_left+0x54>
+ 1fc:	82 e0       	ldi	r24, 0x02	; 2
+ 1fe:	90 e0       	ldi	r25, 0x00	; 0
+ 200:	90 93 bf 07 	sts	0x07BF, r25
+ 204:	80 93 be 07 	sts	0x07BE, r24
+ 208:	08 95       	ret
 
-00000218 <robot_ypos_right>:
- 218:	80 91 26 0e 	lds	r24, 0x0E26
- 21c:	90 91 27 0e 	lds	r25, 0x0E27
- 220:	88 30       	cpi	r24, 0x08	; 8
- 222:	91 05       	cpc	r25, r1
- 224:	21 f4       	brne	.+8      	; 0x22e <robot_ypos_right+0x16>
- 226:	86 e0       	ldi	r24, 0x06	; 6
- 228:	90 e0       	ldi	r25, 0x00	; 0
- 22a:	b6 cf       	rjmp	.-148    	; 0x198 <next_y_position>
- 22c:	08 95       	ret
- 22e:	82 30       	cpi	r24, 0x02	; 2
- 230:	91 05       	cpc	r25, r1
- 232:	21 f4       	brne	.+8      	; 0x23c <robot_ypos_right+0x24>
- 234:	84 e0       	ldi	r24, 0x04	; 4
- 236:	90 e0       	ldi	r25, 0x00	; 0
- 238:	af cf       	rjmp	.-162    	; 0x198 <next_y_position>
+0000020a <next_y_position>:
+ 20a:	9c 01       	movw	r18, r24
+ 20c:	80 91 52 0e 	lds	r24, 0x0E52
+ 210:	90 91 53 0e 	lds	r25, 0x0E53
+ 214:	28 30       	cpi	r18, 0x08	; 8
+ 216:	31 05       	cpc	r19, r1
+ 218:	11 f4       	brne	.+4      	; 0x21e <next_y_position+0x14>
+ 21a:	01 97       	sbiw	r24, 0x01	; 1
+ 21c:	08 95       	ret
+ 21e:	22 30       	cpi	r18, 0x02	; 2
+ 220:	31 05       	cpc	r19, r1
+ 222:	09 f4       	brne	.+2      	; 0x226 <next_y_position+0x1c>
+ 224:	01 96       	adiw	r24, 0x01	; 1
+ 226:	08 95       	ret
+
+00000228 <next_x_position>:
+ 228:	9c 01       	movw	r18, r24
+ 22a:	80 91 2a 01 	lds	r24, 0x012A
+ 22e:	90 91 2b 01 	lds	r25, 0x012B
+ 232:	26 30       	cpi	r18, 0x06	; 6
+ 234:	31 05       	cpc	r19, r1
+ 236:	11 f4       	brne	.+4      	; 0x23c <next_x_position+0x14>
+ 238:	01 96       	adiw	r24, 0x01	; 1
  23a:	08 95       	ret
- 23c:	86 30       	cpi	r24, 0x06	; 6
- 23e:	91 05       	cpc	r25, r1
- 240:	21 f4       	brne	.+8      	; 0x24a <robot_ypos_right+0x32>
- 242:	82 e0       	ldi	r24, 0x02	; 2
- 244:	90 e0       	ldi	r25, 0x00	; 0
- 246:	a8 cf       	rjmp	.-176    	; 0x198 <next_y_position>
- 248:	08 95       	ret
- 24a:	04 97       	sbiw	r24, 0x04	; 4
- 24c:	21 f4       	brne	.+8      	; 0x256 <robot_ypos_right+0x3e>
- 24e:	88 e0       	ldi	r24, 0x08	; 8
- 250:	90 e0       	ldi	r25, 0x00	; 0
- 252:	a2 cf       	rjmp	.-188    	; 0x198 <next_y_position>
- 254:	08 95       	ret
- 256:	80 e0       	ldi	r24, 0x00	; 0
- 258:	90 e0       	ldi	r25, 0x00	; 0
- 25a:	08 95       	ret
+ 23c:	24 30       	cpi	r18, 0x04	; 4
+ 23e:	31 05       	cpc	r19, r1
+ 240:	09 f4       	brne	.+2      	; 0x244 <next_x_position+0x1c>
+ 242:	01 97       	sbiw	r24, 0x01	; 1
+ 244:	08 95       	ret
 
-0000025c <back_at_start>:
- 25c:	2d e1       	ldi	r18, 0x1D	; 29
- 25e:	ac 01       	movw	r20, r24
- 260:	24 9f       	mul	r18, r20
- 262:	c0 01       	movw	r24, r0
- 264:	25 9f       	mul	r18, r21
- 266:	90 0d       	add	r25, r0
- 268:	11 24       	eor	r1, r1
- 26a:	68 0f       	add	r22, r24
- 26c:	79 1f       	adc	r23, r25
- 26e:	fb 01       	movw	r30, r22
- 270:	ee 0f       	add	r30, r30
- 272:	ff 1f       	adc	r31, r31
- 274:	e0 50       	subi	r30, 0x00	; 0
- 276:	ff 4f       	sbci	r31, 0xFF	; 255
- 278:	80 81       	ld	r24, Z
- 27a:	91 81       	ldd	r25, Z+1	; 0x01
- 27c:	04 97       	sbiw	r24, 0x04	; 4
- 27e:	21 f4       	brne	.+8      	; 0x288 <back_at_start+0x2c>
- 280:	35 df       	rcall	.-406    	; 0xec <robot_turn_right>
- 282:	34 df       	rcall	.-408    	; 0xec <robot_turn_right>
- 284:	81 e0       	ldi	r24, 0x01	; 1
- 286:	08 95       	ret
- 288:	80 e0       	ldi	r24, 0x00	; 0
- 28a:	08 95       	ret
+00000246 <robot_move>:
+ 246:	cf 93       	push	r28
+ 248:	df 93       	push	r29
+ 24a:	c0 91 be 07 	lds	r28, 0x07BE
+ 24e:	d0 91 bf 07 	lds	r29, 0x07BF
+ 252:	ce 01       	movw	r24, r28
+ 254:	e9 df       	rcall	.-46     	; 0x228 <next_x_position>
+ 256:	90 93 2b 01 	sts	0x012B, r25
+ 25a:	80 93 2a 01 	sts	0x012A, r24
+ 25e:	ce 01       	movw	r24, r28
+ 260:	d4 df       	rcall	.-88     	; 0x20a <next_y_position>
+ 262:	90 93 53 0e 	sts	0x0E53, r25
+ 266:	80 93 52 0e 	sts	0x0E52, r24
+ 26a:	df 91       	pop	r29
+ 26c:	cf 91       	pop	r28
+ 26e:	08 95       	ret
 
-0000028c <detect_wall>:
- 28c:	2d e1       	ldi	r18, 0x1D	; 29
- 28e:	ac 01       	movw	r20, r24
- 290:	24 9f       	mul	r18, r20
- 292:	c0 01       	movw	r24, r0
- 294:	25 9f       	mul	r18, r21
- 296:	90 0d       	add	r25, r0
- 298:	11 24       	eor	r1, r1
- 29a:	68 0f       	add	r22, r24
- 29c:	79 1f       	adc	r23, r25
- 29e:	fb 01       	movw	r30, r22
- 2a0:	ee 0f       	add	r30, r30
- 2a2:	ff 1f       	adc	r31, r31
- 2a4:	e0 50       	subi	r30, 0x00	; 0
- 2a6:	ff 4f       	sbci	r31, 0xFF	; 255
- 2a8:	20 81       	ld	r18, Z
- 2aa:	31 81       	ldd	r19, Z+1	; 0x01
- 2ac:	21 15       	cp	r18, r1
- 2ae:	31 05       	cpc	r19, r1
- 2b0:	61 f0       	breq	.+24     	; 0x2ca <detect_wall+0x3e>
- 2b2:	21 30       	cpi	r18, 0x01	; 1
- 2b4:	31 05       	cpc	r19, r1
- 2b6:	59 f0       	breq	.+22     	; 0x2ce <detect_wall+0x42>
- 2b8:	22 30       	cpi	r18, 0x02	; 2
- 2ba:	31 05       	cpc	r19, r1
- 2bc:	51 f0       	breq	.+20     	; 0x2d2 <detect_wall+0x46>
- 2be:	81 e0       	ldi	r24, 0x01	; 1
- 2c0:	24 30       	cpi	r18, 0x04	; 4
- 2c2:	31 05       	cpc	r19, r1
- 2c4:	39 f4       	brne	.+14     	; 0x2d4 <detect_wall+0x48>
- 2c6:	80 e0       	ldi	r24, 0x00	; 0
- 2c8:	08 95       	ret
- 2ca:	81 e0       	ldi	r24, 0x01	; 1
- 2cc:	08 95       	ret
- 2ce:	80 e0       	ldi	r24, 0x00	; 0
- 2d0:	08 95       	ret
- 2d2:	81 e0       	ldi	r24, 0x01	; 1
- 2d4:	08 95       	ret
+00000270 <set_coordinate_in_array>:
 
-000002d6 <robot_move>:
- 2d6:	cf 93       	push	r28
- 2d8:	df 93       	push	r29
- 2da:	c0 91 26 0e 	lds	r28, 0x0E26
- 2de:	d0 91 27 0e 	lds	r29, 0x0E27
- 2e2:	ce 01       	movw	r24, r28
- 2e4:	68 df       	rcall	.-304    	; 0x1b6 <next_x_position>
- 2e6:	90 93 93 07 	sts	0x0793, r25
- 2ea:	80 93 92 07 	sts	0x0792, r24
- 2ee:	ce 01       	movw	r24, r28
- 2f0:	53 df       	rcall	.-346    	; 0x198 <next_y_position>
- 2f2:	90 93 29 0e 	sts	0x0E29, r25
- 2f6:	80 93 28 0e 	sts	0x0E28, r24
- 2fa:	df 91       	pop	r29
- 2fc:	cf 91       	pop	r28
- 2fe:	08 95       	ret
 
-00000300 <right_x_pos>:
+
+void set_coordinate_in_array(int y, int x, int value)
+{
+	robot_array[y][x] = value;
+ 270:	2d e1       	ldi	r18, 0x1D	; 29
+ 272:	fc 01       	movw	r30, r24
+ 274:	2e 9f       	mul	r18, r30
+ 276:	c0 01       	movw	r24, r0
+ 278:	2f 9f       	mul	r18, r31
+ 27a:	90 0d       	add	r25, r0
+ 27c:	11 24       	eor	r1, r1
+ 27e:	68 0f       	add	r22, r24
+ 280:	79 1f       	adc	r23, r25
+ 282:	fb 01       	movw	r30, r22
+ 284:	ee 0f       	add	r30, r30
+ 286:	ff 1f       	adc	r31, r31
+ 288:	e4 5d       	subi	r30, 0xD4	; 212
+ 28a:	fe 4f       	sbci	r31, 0xFE	; 254
+ 28c:	51 83       	std	Z+1, r21	; 0x01
+ 28e:	40 83       	st	Z, r20
+ 290:	08 95       	ret
+
+00000292 <right_x_pos>:
 
 //position to the right of the robot x coordinates
 int right_x_pos()
 {
 	int right_x_pos;
 	right_x_pos = xpos;
- 300:	80 91 92 07 	lds	r24, 0x0792
- 304:	90 91 93 07 	lds	r25, 0x0793
+ 292:	80 91 2a 01 	lds	r24, 0x012A
+ 296:	90 91 2b 01 	lds	r25, 0x012B
 	if(direction == up)
- 308:	20 91 26 0e 	lds	r18, 0x0E26
- 30c:	30 91 27 0e 	lds	r19, 0x0E27
- 310:	28 30       	cpi	r18, 0x08	; 8
- 312:	31 05       	cpc	r19, r1
- 314:	11 f4       	brne	.+4      	; 0x31a <right_x_pos+0x1a>
+ 29a:	20 91 be 07 	lds	r18, 0x07BE
+ 29e:	30 91 bf 07 	lds	r19, 0x07BF
+ 2a2:	28 30       	cpi	r18, 0x08	; 8
+ 2a4:	31 05       	cpc	r19, r1
+ 2a6:	11 f4       	brne	.+4      	; 0x2ac <right_x_pos+0x1a>
 	{
 		right_x_pos = xpos +1;
- 316:	01 96       	adiw	r24, 0x01	; 1
- 318:	08 95       	ret
+ 2a8:	01 96       	adiw	r24, 0x01	; 1
+ 2aa:	08 95       	ret
 	}
 	else if(direction == down)
- 31a:	22 30       	cpi	r18, 0x02	; 2
- 31c:	31 05       	cpc	r19, r1
- 31e:	09 f4       	brne	.+2      	; 0x322 <right_x_pos+0x22>
+ 2ac:	22 30       	cpi	r18, 0x02	; 2
+ 2ae:	31 05       	cpc	r19, r1
+ 2b0:	09 f4       	brne	.+2      	; 0x2b4 <right_x_pos+0x22>
 	{
 		right_x_pos = xpos -1;
- 320:	01 97       	sbiw	r24, 0x01	; 1
+ 2b2:	01 97       	sbiw	r24, 0x01	; 1
 	else if(direction == right)
 	{
 		right_x_pos = xpos;
 	}
 	return right_x_pos;
 }
- 322:	08 95       	ret
+ 2b4:	08 95       	ret
 
-00000324 <right_y_pos>:
+000002b6 <right_y_pos>:
 	
 //position to the right of the robot y coordinates
 int right_y_pos()
 {
 	int right_y_pos = ypos;
- 324:	80 91 28 0e 	lds	r24, 0x0E28
- 328:	90 91 29 0e 	lds	r25, 0x0E29
+ 2b6:	80 91 52 0e 	lds	r24, 0x0E52
+ 2ba:	90 91 53 0e 	lds	r25, 0x0E53
 	if(direction == up)
- 32c:	20 91 26 0e 	lds	r18, 0x0E26
- 330:	30 91 27 0e 	lds	r19, 0x0E27
- 334:	28 30       	cpi	r18, 0x08	; 8
- 336:	31 05       	cpc	r19, r1
- 338:	61 f0       	breq	.+24     	; 0x352 <right_y_pos+0x2e>
+ 2be:	20 91 be 07 	lds	r18, 0x07BE
+ 2c2:	30 91 bf 07 	lds	r19, 0x07BF
+ 2c6:	28 30       	cpi	r18, 0x08	; 8
+ 2c8:	31 05       	cpc	r19, r1
+ 2ca:	61 f0       	breq	.+24     	; 0x2e4 <right_y_pos+0x2e>
 	{
 		right_y_pos = ypos;
 	}
 	else if(direction == down)
- 33a:	22 30       	cpi	r18, 0x02	; 2
- 33c:	31 05       	cpc	r19, r1
- 33e:	49 f0       	breq	.+18     	; 0x352 <right_y_pos+0x2e>
+ 2cc:	22 30       	cpi	r18, 0x02	; 2
+ 2ce:	31 05       	cpc	r19, r1
+ 2d0:	49 f0       	breq	.+18     	; 0x2e4 <right_y_pos+0x2e>
 	{
 		right_y_pos = ypos;
 	}
 	else if(direction == left)
- 340:	24 30       	cpi	r18, 0x04	; 4
- 342:	31 05       	cpc	r19, r1
- 344:	11 f4       	brne	.+4      	; 0x34a <right_y_pos+0x26>
+ 2d2:	24 30       	cpi	r18, 0x04	; 4
+ 2d4:	31 05       	cpc	r19, r1
+ 2d6:	11 f4       	brne	.+4      	; 0x2dc <right_y_pos+0x26>
 	{
 		right_y_pos = ypos -1;
- 346:	01 97       	sbiw	r24, 0x01	; 1
- 348:	08 95       	ret
+ 2d8:	01 97       	sbiw	r24, 0x01	; 1
+ 2da:	08 95       	ret
 	}
 	else if(direction == right)
- 34a:	26 30       	cpi	r18, 0x06	; 6
- 34c:	31 05       	cpc	r19, r1
- 34e:	09 f4       	brne	.+2      	; 0x352 <right_y_pos+0x2e>
+ 2dc:	26 30       	cpi	r18, 0x06	; 6
+ 2de:	31 05       	cpc	r19, r1
+ 2e0:	09 f4       	brne	.+2      	; 0x2e4 <right_y_pos+0x2e>
 	{
 		right_y_pos = ypos +1;
- 350:	01 96       	adiw	r24, 0x01	; 1
+ 2e2:	01 96       	adiw	r24, 0x01	; 1
 	}
 	return right_y_pos;
 }
- 352:	08 95       	ret
+ 2e4:	08 95       	ret
 
-00000354 <left_x_pos>:
+000002e6 <left_x_pos>:
 
 //position to the left of the robot x coordinates
 int left_x_pos()
 {
 	int left_x_pos = xpos;
- 354:	80 91 92 07 	lds	r24, 0x0792
- 358:	90 91 93 07 	lds	r25, 0x0793
+ 2e6:	80 91 2a 01 	lds	r24, 0x012A
+ 2ea:	90 91 2b 01 	lds	r25, 0x012B
 	if(direction == up)
- 35c:	20 91 26 0e 	lds	r18, 0x0E26
- 360:	30 91 27 0e 	lds	r19, 0x0E27
- 364:	28 30       	cpi	r18, 0x08	; 8
- 366:	31 05       	cpc	r19, r1
- 368:	11 f4       	brne	.+4      	; 0x36e <left_x_pos+0x1a>
+ 2ee:	20 91 be 07 	lds	r18, 0x07BE
+ 2f2:	30 91 bf 07 	lds	r19, 0x07BF
+ 2f6:	28 30       	cpi	r18, 0x08	; 8
+ 2f8:	31 05       	cpc	r19, r1
+ 2fa:	11 f4       	brne	.+4      	; 0x300 <left_x_pos+0x1a>
 	{
 		left_x_pos = xpos -1;
- 36a:	01 97       	sbiw	r24, 0x01	; 1
- 36c:	08 95       	ret
+ 2fc:	01 97       	sbiw	r24, 0x01	; 1
+ 2fe:	08 95       	ret
 	}
 	else if(direction == down)
- 36e:	22 30       	cpi	r18, 0x02	; 2
- 370:	31 05       	cpc	r19, r1
- 372:	09 f4       	brne	.+2      	; 0x376 <left_x_pos+0x22>
+ 300:	22 30       	cpi	r18, 0x02	; 2
+ 302:	31 05       	cpc	r19, r1
+ 304:	09 f4       	brne	.+2      	; 0x308 <left_x_pos+0x22>
 	{
 		left_x_pos = xpos +1;
- 374:	01 96       	adiw	r24, 0x01	; 1
+ 306:	01 96       	adiw	r24, 0x01	; 1
 	else if(direction == right)
 	{
 		left_x_pos = xpos;
 	}
 	return left_x_pos;
 }
- 376:	08 95       	ret
+ 308:	08 95       	ret
 
-00000378 <left_y_pos>:
+0000030a <left_y_pos>:
 
 //position to the left of the robot y coordinates
 int left_y_pos()
 {
 	int left_y_pos = xpos;
- 378:	80 91 92 07 	lds	r24, 0x0792
- 37c:	90 91 93 07 	lds	r25, 0x0793
+ 30a:	80 91 2a 01 	lds	r24, 0x012A
+ 30e:	90 91 2b 01 	lds	r25, 0x012B
 	if(direction == up)
- 380:	20 91 26 0e 	lds	r18, 0x0E26
- 384:	30 91 27 0e 	lds	r19, 0x0E27
- 388:	28 30       	cpi	r18, 0x08	; 8
- 38a:	31 05       	cpc	r19, r1
- 38c:	29 f4       	brne	.+10     	; 0x398 <left_y_pos+0x20>
+ 312:	20 91 be 07 	lds	r18, 0x07BE
+ 316:	30 91 bf 07 	lds	r19, 0x07BF
+ 31a:	28 30       	cpi	r18, 0x08	; 8
+ 31c:	31 05       	cpc	r19, r1
+ 31e:	29 f4       	brne	.+10     	; 0x32a <left_y_pos+0x20>
 	{
 		left_y_pos = ypos;
- 38e:	80 91 28 0e 	lds	r24, 0x0E28
- 392:	90 91 29 0e 	lds	r25, 0x0E29
- 396:	08 95       	ret
+ 320:	80 91 52 0e 	lds	r24, 0x0E52
+ 324:	90 91 53 0e 	lds	r25, 0x0E53
+ 328:	08 95       	ret
 	}
 	else if(direction == down)
- 398:	22 30       	cpi	r18, 0x02	; 2
- 39a:	31 05       	cpc	r19, r1
- 39c:	29 f4       	brne	.+10     	; 0x3a8 <left_y_pos+0x30>
+ 32a:	22 30       	cpi	r18, 0x02	; 2
+ 32c:	31 05       	cpc	r19, r1
+ 32e:	29 f4       	brne	.+10     	; 0x33a <left_y_pos+0x30>
 	{
 		left_y_pos = ypos;
- 39e:	80 91 28 0e 	lds	r24, 0x0E28
- 3a2:	90 91 29 0e 	lds	r25, 0x0E29
- 3a6:	08 95       	ret
+ 330:	80 91 52 0e 	lds	r24, 0x0E52
+ 334:	90 91 53 0e 	lds	r25, 0x0E53
+ 338:	08 95       	ret
 	}
 	else if(direction == left)
- 3a8:	24 30       	cpi	r18, 0x04	; 4
- 3aa:	31 05       	cpc	r19, r1
- 3ac:	31 f4       	brne	.+12     	; 0x3ba <left_y_pos+0x42>
+ 33a:	24 30       	cpi	r18, 0x04	; 4
+ 33c:	31 05       	cpc	r19, r1
+ 33e:	31 f4       	brne	.+12     	; 0x34c <left_y_pos+0x42>
 	{
 		left_y_pos = ypos +1;
- 3ae:	80 91 28 0e 	lds	r24, 0x0E28
- 3b2:	90 91 29 0e 	lds	r25, 0x0E29
- 3b6:	01 96       	adiw	r24, 0x01	; 1
- 3b8:	08 95       	ret
+ 340:	80 91 52 0e 	lds	r24, 0x0E52
+ 344:	90 91 53 0e 	lds	r25, 0x0E53
+ 348:	01 96       	adiw	r24, 0x01	; 1
+ 34a:	08 95       	ret
 	}
 	else if(direction == right)
- 3ba:	26 30       	cpi	r18, 0x06	; 6
- 3bc:	31 05       	cpc	r19, r1
- 3be:	29 f4       	brne	.+10     	; 0x3ca <left_y_pos+0x52>
+ 34c:	26 30       	cpi	r18, 0x06	; 6
+ 34e:	31 05       	cpc	r19, r1
+ 350:	29 f4       	brne	.+10     	; 0x35c <left_y_pos+0x52>
 	{
 		left_y_pos = ypos -1;
- 3c0:	80 91 28 0e 	lds	r24, 0x0E28
- 3c4:	90 91 29 0e 	lds	r25, 0x0E29
- 3c8:	01 97       	sbiw	r24, 0x01	; 1
+ 352:	80 91 52 0e 	lds	r24, 0x0E52
+ 356:	90 91 53 0e 	lds	r25, 0x0E53
+ 35a:	01 97       	sbiw	r24, 0x01	; 1
 	}
 	return left_y_pos;
 }
- 3ca:	08 95       	ret
+ 35c:	08 95       	ret
 
-000003cc <save_detected_walls_in_array>:
-{
-	robot_array[y][x] = 1;
+0000035e <drive_nearest_path>:
+		back_at_start(ypos, xpos);
+	}
 }
+
+bool drive_nearest_path()
+{
+ 35e:	0f 93       	push	r16
+ 360:	1f 93       	push	r17
+ 362:	cf 93       	push	r28
+ 364:	df 93       	push	r29
+	if(detect_path(next_y_position(direction), next_x_position(direction)))
+ 366:	c0 91 be 07 	lds	r28, 0x07BE
+ 36a:	d0 91 bf 07 	lds	r29, 0x07BF
+ 36e:	ce 01       	movw	r24, r28
+ 370:	5b df       	rcall	.-330    	; 0x228 <next_x_position>
+ 372:	8c 01       	movw	r16, r24
+ 374:	ce 01       	movw	r24, r28
+ 376:	49 df       	rcall	.-366    	; 0x20a <next_y_position>
 	
-void save_detected_walls_in_array()
-{	
- 3cc:	1f 93       	push	r17
- 3ce:	cf 93       	push	r28
- 3d0:	df 93       	push	r29
-	robot_array[y][x] = 5;
 }
 
-void set_coordinate_in_array_to_one(int y, int x)
+bool detect_path(int next_yposition,int next_xposition)
 {
-	robot_array[y][x] = 1;
- 3d2:	80 91 28 0e 	lds	r24, 0x0E28
- 3d6:	90 91 29 0e 	lds	r25, 0x0E29
- 3da:	1d e1       	ldi	r17, 0x1D	; 29
- 3dc:	18 9f       	mul	r17, r24
- 3de:	f0 01       	movw	r30, r0
- 3e0:	19 9f       	mul	r17, r25
- 3e2:	f0 0d       	add	r31, r0
- 3e4:	11 24       	eor	r1, r1
- 3e6:	80 91 92 07 	lds	r24, 0x0792
- 3ea:	90 91 93 07 	lds	r25, 0x0793
- 3ee:	e8 0f       	add	r30, r24
- 3f0:	f9 1f       	adc	r31, r25
- 3f2:	ee 0f       	add	r30, r30
- 3f4:	ff 1f       	adc	r31, r31
- 3f6:	ec 56       	subi	r30, 0x6C	; 108
- 3f8:	f8 4f       	sbci	r31, 0xF8	; 248
- 3fa:	81 e0       	ldi	r24, 0x01	; 1
- 3fc:	90 e0       	ldi	r25, 0x00	; 0
- 3fe:	91 83       	std	Z+1, r25	; 0x01
- 400:	80 83       	st	Z, r24
+	if(nearest_path_array[next_yposition][next_xposition] == 3)
+ 378:	2d e1       	ldi	r18, 0x1D	; 29
+ 37a:	ac 01       	movw	r20, r24
+ 37c:	24 9f       	mul	r18, r20
+ 37e:	c0 01       	movw	r24, r0
+ 380:	25 9f       	mul	r18, r21
+ 382:	90 0d       	add	r25, r0
+ 384:	11 24       	eor	r1, r1
+ 386:	08 0f       	add	r16, r24
+ 388:	19 1f       	adc	r17, r25
+ 38a:	f8 01       	movw	r30, r16
+ 38c:	ee 0f       	add	r30, r30
+ 38e:	ff 1f       	adc	r31, r31
+ 390:	e0 54       	subi	r30, 0x40	; 64
+ 392:	f8 4f       	sbci	r31, 0xF8	; 248
+	}
+}
+
+bool drive_nearest_path()
+{
+	if(detect_path(next_y_position(direction), next_x_position(direction)))
+ 394:	80 81       	ld	r24, Z
+ 396:	91 81       	ldd	r25, Z+1	; 0x01
+ 398:	03 97       	sbiw	r24, 0x03	; 3
+ 39a:	19 f4       	brne	.+6      	; 0x3a2 <drive_nearest_path+0x44>
+	{
+		robot_move(); 
+ 39c:	54 df       	rcall	.-344    	; 0x246 <robot_move>
+		return false;
+ 39e:	80 e0       	ldi	r24, 0x00	; 0
+ 3a0:	2f c0       	rjmp	.+94     	; 0x400 <drive_nearest_path+0xa2>
+	}
+	else if(detect_path(right_y_pos(), right_x_pos()))
+ 3a2:	77 df       	rcall	.-274    	; 0x292 <right_x_pos>
+ 3a4:	ec 01       	movw	r28, r24
+ 3a6:	87 df       	rcall	.-242    	; 0x2b6 <right_y_pos>
 	
-void save_detected_walls_in_array()
-{	
-	set_coordinate_in_array_to_one(ypos, xpos);
-	//if(right_distance < 150)
-	if(Maparray[right_y_pos()][right_x_pos()] >= 5)
- 402:	90 df       	rcall	.-224    	; 0x324 <right_y_pos>
- 404:	ec 01       	movw	r28, r24
- 406:	7c df       	rcall	.-264    	; 0x300 <right_x_pos>
- 408:	1c 9f       	mul	r17, r28
- 40a:	f0 01       	movw	r30, r0
- 40c:	1d 9f       	mul	r17, r29
- 40e:	f0 0d       	add	r31, r0
- 410:	11 24       	eor	r1, r1
- 412:	e8 0f       	add	r30, r24
- 414:	f9 1f       	adc	r31, r25
- 416:	ee 0f       	add	r30, r30
- 418:	ff 1f       	adc	r31, r31
- 41a:	e0 50       	subi	r30, 0x00	; 0
- 41c:	ff 4f       	sbci	r31, 0xFF	; 255
- 41e:	20 81       	ld	r18, Z
- 420:	31 81       	ldd	r19, Z+1	; 0x01
- 422:	25 30       	cpi	r18, 0x05	; 5
- 424:	31 05       	cpc	r19, r1
- 426:	8c f0       	brlt	.+34     	; 0x44a <save_detected_walls_in_array+0x7e>
-	}
 }
 
-void set_coordinate_in_array_to_five(int y, int x)
+bool detect_path(int next_yposition,int next_xposition)
 {
-	robot_array[y][x] = 5;
- 428:	2d e1       	ldi	r18, 0x1D	; 29
- 42a:	2c 9f       	mul	r18, r28
- 42c:	f0 01       	movw	r30, r0
- 42e:	2d 9f       	mul	r18, r29
- 430:	f0 0d       	add	r31, r0
- 432:	11 24       	eor	r1, r1
- 434:	8e 0f       	add	r24, r30
- 436:	9f 1f       	adc	r25, r31
- 438:	fc 01       	movw	r30, r24
- 43a:	ee 0f       	add	r30, r30
- 43c:	ff 1f       	adc	r31, r31
- 43e:	ec 56       	subi	r30, 0x6C	; 108
- 440:	f8 4f       	sbci	r31, 0xF8	; 248
- 442:	85 e0       	ldi	r24, 0x05	; 5
- 444:	90 e0       	ldi	r25, 0x00	; 0
- 446:	91 83       	std	Z+1, r25	; 0x01
- 448:	80 83       	st	Z, r24
-	if(Maparray[right_y_pos()][right_x_pos()] >= 5)
+	if(nearest_path_array[next_yposition][next_xposition] == 3)
+ 3a8:	2d e1       	ldi	r18, 0x1D	; 29
+ 3aa:	ac 01       	movw	r20, r24
+ 3ac:	24 9f       	mul	r18, r20
+ 3ae:	c0 01       	movw	r24, r0
+ 3b0:	25 9f       	mul	r18, r21
+ 3b2:	90 0d       	add	r25, r0
+ 3b4:	11 24       	eor	r1, r1
+ 3b6:	c8 0f       	add	r28, r24
+ 3b8:	d9 1f       	adc	r29, r25
+ 3ba:	cc 0f       	add	r28, r28
+ 3bc:	dd 1f       	adc	r29, r29
+ 3be:	c0 54       	subi	r28, 0x40	; 64
+ 3c0:	d8 4f       	sbci	r29, 0xF8	; 248
+	if(detect_path(next_y_position(direction), next_x_position(direction)))
 	{
-		set_coordinate_in_array_to_five(right_y_pos(), right_x_pos());	
+		robot_move(); 
+		return false;
 	}
-	//if(left_distance < 150)
-	if(Maparray[left_y_pos()][left_x_pos()] >= 5)
- 44a:	96 df       	rcall	.-212    	; 0x378 <left_y_pos>
- 44c:	ec 01       	movw	r28, r24
- 44e:	82 df       	rcall	.-252    	; 0x354 <left_x_pos>
- 450:	2d e1       	ldi	r18, 0x1D	; 29
- 452:	2c 9f       	mul	r18, r28
- 454:	f0 01       	movw	r30, r0
- 456:	2d 9f       	mul	r18, r29
- 458:	f0 0d       	add	r31, r0
- 45a:	11 24       	eor	r1, r1
- 45c:	e8 0f       	add	r30, r24
- 45e:	f9 1f       	adc	r31, r25
- 460:	ee 0f       	add	r30, r30
- 462:	ff 1f       	adc	r31, r31
- 464:	e0 50       	subi	r30, 0x00	; 0
- 466:	ff 4f       	sbci	r31, 0xFF	; 255
- 468:	20 81       	ld	r18, Z
- 46a:	31 81       	ldd	r19, Z+1	; 0x01
- 46c:	25 30       	cpi	r18, 0x05	; 5
- 46e:	31 05       	cpc	r19, r1
- 470:	8c f0       	brlt	.+34     	; 0x494 <save_detected_walls_in_array+0xc8>
+	else if(detect_path(right_y_pos(), right_x_pos()))
+ 3c2:	88 81       	ld	r24, Y
+ 3c4:	99 81       	ldd	r25, Y+1	; 0x01
+ 3c6:	03 97       	sbiw	r24, 0x03	; 3
+ 3c8:	19 f4       	brne	.+6      	; 0x3d0 <drive_nearest_path+0x72>
+	{
+		robot_turn_right();
+ 3ca:	c9 de       	rcall	.-622    	; 0x15e <robot_turn_right>
+		return false;
+ 3cc:	80 e0       	ldi	r24, 0x00	; 0
+ 3ce:	18 c0       	rjmp	.+48     	; 0x400 <drive_nearest_path+0xa2>
 	}
+	else if(detect_path(left_y_pos(), left_x_pos()))
+ 3d0:	8a df       	rcall	.-236    	; 0x2e6 <left_x_pos>
+ 3d2:	ec 01       	movw	r28, r24
+ 3d4:	9a df       	rcall	.-204    	; 0x30a <left_y_pos>
+	
 }
 
-void set_coordinate_in_array_to_five(int y, int x)
+bool detect_path(int next_yposition,int next_xposition)
 {
-	robot_array[y][x] = 5;
- 472:	2d e1       	ldi	r18, 0x1D	; 29
- 474:	2c 9f       	mul	r18, r28
- 476:	f0 01       	movw	r30, r0
- 478:	2d 9f       	mul	r18, r29
- 47a:	f0 0d       	add	r31, r0
- 47c:	11 24       	eor	r1, r1
- 47e:	8e 0f       	add	r24, r30
- 480:	9f 1f       	adc	r25, r31
- 482:	fc 01       	movw	r30, r24
- 484:	ee 0f       	add	r30, r30
- 486:	ff 1f       	adc	r31, r31
- 488:	ec 56       	subi	r30, 0x6C	; 108
- 48a:	f8 4f       	sbci	r31, 0xF8	; 248
- 48c:	85 e0       	ldi	r24, 0x05	; 5
- 48e:	90 e0       	ldi	r25, 0x00	; 0
- 490:	91 83       	std	Z+1, r25	; 0x01
- 492:	80 83       	st	Z, r24
-	//if(left_distance < 150)
-	if(Maparray[left_y_pos()][left_x_pos()] >= 5)
+	if(nearest_path_array[next_yposition][next_xposition] == 3)
+ 3d6:	2d e1       	ldi	r18, 0x1D	; 29
+ 3d8:	ac 01       	movw	r20, r24
+ 3da:	24 9f       	mul	r18, r20
+ 3dc:	c0 01       	movw	r24, r0
+ 3de:	25 9f       	mul	r18, r21
+ 3e0:	90 0d       	add	r25, r0
+ 3e2:	11 24       	eor	r1, r1
+ 3e4:	c8 0f       	add	r28, r24
+ 3e6:	d9 1f       	adc	r29, r25
+ 3e8:	cc 0f       	add	r28, r28
+ 3ea:	dd 1f       	adc	r29, r29
+ 3ec:	c0 54       	subi	r28, 0x40	; 64
+ 3ee:	d8 4f       	sbci	r29, 0xF8	; 248
+	else if(detect_path(right_y_pos(), right_x_pos()))
 	{
-		set_coordinate_in_array_to_five(left_y_pos(), left_x_pos());
+		robot_turn_right();
+		return false;
 	}
-	if(Maparray[right_y_pos()][right_x_pos()] == 1)
- 494:	47 df       	rcall	.-370    	; 0x324 <right_y_pos>
- 496:	ec 01       	movw	r28, r24
- 498:	33 df       	rcall	.-410    	; 0x300 <right_x_pos>
- 49a:	2d e1       	ldi	r18, 0x1D	; 29
- 49c:	2c 9f       	mul	r18, r28
- 49e:	f0 01       	movw	r30, r0
- 4a0:	2d 9f       	mul	r18, r29
- 4a2:	f0 0d       	add	r31, r0
- 4a4:	11 24       	eor	r1, r1
- 4a6:	e8 0f       	add	r30, r24
- 4a8:	f9 1f       	adc	r31, r25
- 4aa:	ee 0f       	add	r30, r30
- 4ac:	ff 1f       	adc	r31, r31
- 4ae:	e0 50       	subi	r30, 0x00	; 0
- 4b0:	ff 4f       	sbci	r31, 0xFF	; 255
- 4b2:	20 81       	ld	r18, Z
- 4b4:	31 81       	ldd	r19, Z+1	; 0x01
- 4b6:	21 30       	cpi	r18, 0x01	; 1
- 4b8:	31 05       	cpc	r19, r1
- 4ba:	c1 f5       	brne	.+112    	; 0x52c <save_detected_walls_in_array+0x160>
-	robot_array[y][x] = 5;
-}
-
-void set_coordinate_in_array_to_one(int y, int x)
-{
-	robot_array[y][x] = 1;
- 4bc:	1d e1       	ldi	r17, 0x1D	; 29
- 4be:	1c 9f       	mul	r17, r28
- 4c0:	f0 01       	movw	r30, r0
- 4c2:	1d 9f       	mul	r17, r29
- 4c4:	f0 0d       	add	r31, r0
- 4c6:	11 24       	eor	r1, r1
- 4c8:	8e 0f       	add	r24, r30
- 4ca:	9f 1f       	adc	r25, r31
- 4cc:	fc 01       	movw	r30, r24
- 4ce:	ee 0f       	add	r30, r30
- 4d0:	ff 1f       	adc	r31, r31
- 4d2:	ec 56       	subi	r30, 0x6C	; 108
- 4d4:	f8 4f       	sbci	r31, 0xF8	; 248
- 4d6:	81 e0       	ldi	r24, 0x01	; 1
- 4d8:	90 e0       	ldi	r25, 0x00	; 0
- 4da:	91 83       	std	Z+1, r25	; 0x01
- 4dc:	80 83       	st	Z, r24
-	}
-	if(Maparray[right_y_pos()][right_x_pos()] == 1)
+	else if(detect_path(left_y_pos(), left_x_pos()))
+ 3f0:	88 81       	ld	r24, Y
+ 3f2:	99 81       	ldd	r25, Y+1	; 0x01
+ 3f4:	03 97       	sbiw	r24, 0x03	; 3
+ 3f6:	19 f4       	brne	.+6      	; 0x3fe <drive_nearest_path+0xa0>
 	{
-		set_coordinate_in_array_to_one(right_y_pos(), right_x_pos());
-	}
-	if(Maparray[right_y_pos()][right_x_pos()] == 1)
- 4de:	22 df       	rcall	.-444    	; 0x324 <right_y_pos>
- 4e0:	ec 01       	movw	r28, r24
- 4e2:	0e df       	rcall	.-484    	; 0x300 <right_x_pos>
- 4e4:	1c 9f       	mul	r17, r28
- 4e6:	90 01       	movw	r18, r0
- 4e8:	1d 9f       	mul	r17, r29
- 4ea:	30 0d       	add	r19, r0
- 4ec:	11 24       	eor	r1, r1
- 4ee:	82 0f       	add	r24, r18
- 4f0:	93 1f       	adc	r25, r19
- 4f2:	fc 01       	movw	r30, r24
- 4f4:	ee 0f       	add	r30, r30
- 4f6:	ff 1f       	adc	r31, r31
- 4f8:	e0 50       	subi	r30, 0x00	; 0
- 4fa:	ff 4f       	sbci	r31, 0xFF	; 255
- 4fc:	80 81       	ld	r24, Z
- 4fe:	91 81       	ldd	r25, Z+1	; 0x01
- 500:	01 97       	sbiw	r24, 0x01	; 1
- 502:	a1 f4       	brne	.+40     	; 0x52c <save_detected_walls_in_array+0x160>
-	{
-		set_coordinate_in_array_to_one(left_y_pos(), left_x_pos());
- 504:	27 df       	rcall	.-434    	; 0x354 <left_x_pos>
- 506:	ec 01       	movw	r28, r24
- 508:	37 df       	rcall	.-402    	; 0x378 <left_y_pos>
-	robot_array[y][x] = 5;
-}
-
-void set_coordinate_in_array_to_one(int y, int x)
-{
-	robot_array[y][x] = 1;
- 50a:	2d e1       	ldi	r18, 0x1D	; 29
- 50c:	ac 01       	movw	r20, r24
- 50e:	24 9f       	mul	r18, r20
- 510:	c0 01       	movw	r24, r0
- 512:	25 9f       	mul	r18, r21
- 514:	90 0d       	add	r25, r0
- 516:	11 24       	eor	r1, r1
- 518:	c8 0f       	add	r28, r24
- 51a:	d9 1f       	adc	r29, r25
- 51c:	cc 0f       	add	r28, r28
- 51e:	dd 1f       	adc	r29, r29
- 520:	cc 56       	subi	r28, 0x6C	; 108
- 522:	d8 4f       	sbci	r29, 0xF8	; 248
- 524:	81 e0       	ldi	r24, 0x01	; 1
- 526:	90 e0       	ldi	r25, 0x00	; 0
- 528:	99 83       	std	Y+1, r25	; 0x01
- 52a:	88 83       	st	Y, r24
-	}
-	if(Maparray[right_y_pos()][right_x_pos()] == 1)
-	{
-		set_coordinate_in_array_to_one(left_y_pos(), left_x_pos());
-	}
-}
- 52c:	df 91       	pop	r29
- 52e:	cf 91       	pop	r28
- 530:	1f 91       	pop	r17
- 532:	08 95       	ret
-
-00000534 <robot_keep_right>:
-
-//As long as we don't find a wall ahead or a clear at the right hand side, the robot keeps moving forward 
-//BUT! if we first off, find a clear way to travel to the right, we turn right and if we find a wall we 
-//clearly have to turn left
-void robot_keep_right()
-{
- 534:	0f 93       	push	r16
- 536:	1f 93       	push	r17
- 538:	cf 93       	push	r28
- 53a:	df 93       	push	r29
-	save_detected_walls_in_array();
- 53c:	47 df       	rcall	.-370    	; 0x3cc <save_detected_walls_in_array>
-	//robot_next_yposition= next_ypos(robot.direction);
-	//robot_next_xposition= next_xpos(robot.direction)
-	if(detect_wall(robot_ypos_right(), robot_xpos_right()))
- 53e:	4a de       	rcall	.-876    	; 0x1d4 <robot_xpos_right>
- 540:	ec 01       	movw	r28, r24
- 542:	6a de       	rcall	.-812    	; 0x218 <robot_ypos_right>
- 544:	be 01       	movw	r22, r28
- 546:	a2 de       	rcall	.-700    	; 0x28c <detect_wall>
- 548:	88 23       	and	r24, r24
- 54a:	d1 f0       	breq	.+52     	; 0x580 <robot_keep_right+0x4c>
-	{ //as long as we have wall to the right
-		if(!(detect_wall(next_y_position(direction), next_x_position(direction))))
- 54c:	c0 91 26 0e 	lds	r28, 0x0E26
- 550:	d0 91 27 0e 	lds	r29, 0x0E27
- 554:	ce 01       	movw	r24, r28
- 556:	2f de       	rcall	.-930    	; 0x1b6 <next_x_position>
- 558:	8c 01       	movw	r16, r24
- 55a:	ce 01       	movw	r24, r28
- 55c:	1d de       	rcall	.-966    	; 0x198 <next_y_position>
- 55e:	b8 01       	movw	r22, r16
- 560:	95 de       	rcall	.-726    	; 0x28c <detect_wall>
- 562:	81 11       	cpse	r24, r1
- 564:	0b c0       	rjmp	.+22     	; 0x57c <robot_keep_right+0x48>
-		{ //and no wall in front of robot
-			robot_move(); 
- 566:	b7 de       	rcall	.-658    	; 0x2d6 <robot_move>
-			back_at_start(ypos, xpos);
- 568:	60 91 92 07 	lds	r22, 0x0792
- 56c:	70 91 93 07 	lds	r23, 0x0793
- 570:	80 91 28 0e 	lds	r24, 0x0E28
- 574:	90 91 29 0e 	lds	r25, 0x0E29
- 578:	71 de       	rcall	.-798    	; 0x25c <back_at_start>
- 57a:	0d c0       	rjmp	.+26     	; 0x596 <robot_keep_right+0x62>
-		}
-		else
-		{
-			robot_turn_left(); //if wall in front of robot and wall to the right then turn left
- 57c:	e2 dd       	rcall	.-1084   	; 0x142 <robot_turn_left>
- 57e:	0b c0       	rjmp	.+22     	; 0x596 <robot_keep_right+0x62>
-		}
+		robot_turn_left();
+ 3f8:	dd de       	rcall	.-582    	; 0x1b4 <robot_turn_left>
+		return false;
+ 3fa:	80 e0       	ldi	r24, 0x00	; 0
+ 3fc:	01 c0       	rjmp	.+2      	; 0x400 <drive_nearest_path+0xa2>
 	}
 	else
 	{
- 		robot_turn_right(); //turn right when possible
- 580:	b5 dd       	rcall	.-1174   	; 0xec <robot_turn_right>
-		robot_move(); //then move forward
- 582:	a9 de       	rcall	.-686    	; 0x2d6 <robot_move>
-		back_at_start(ypos, xpos);
- 584:	60 91 92 07 	lds	r22, 0x0792
- 588:	70 91 93 07 	lds	r23, 0x0793
- 58c:	80 91 28 0e 	lds	r24, 0x0E28
- 590:	90 91 29 0e 	lds	r25, 0x0E29
- 594:	63 de       	rcall	.-826    	; 0x25c <back_at_start>
+		return true;
+ 3fe:	81 e0       	ldi	r24, 0x01	; 1
 	}
+	set_coordinate_in_array(ypos, xpos, 1);
 }
- 596:	df 91       	pop	r29
- 598:	cf 91       	pop	r28
- 59a:	1f 91       	pop	r17
- 59c:	0f 91       	pop	r16
- 59e:	08 95       	ret
+ 400:	df 91       	pop	r29
+ 402:	cf 91       	pop	r28
+ 404:	1f 91       	pop	r17
+ 406:	0f 91       	pop	r16
+ 408:	08 95       	ret
 
-000005a0 <_exit>:
- 5a0:	f8 94       	cli
+0000040a <_exit>:
+ 40a:	f8 94       	cli
 
-000005a2 <__stop_program>:
- 5a2:	ff cf       	rjmp	.-2      	; 0x5a2 <__stop_program>
+0000040c <__stop_program>:
+ 40c:	ff cf       	rjmp	.-2      	; 0x40c <__stop_program>

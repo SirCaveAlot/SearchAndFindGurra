@@ -37,6 +37,7 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../Positioning.c \
 ../main.c \
 ../SearchAndFindGurra.c
 
@@ -48,18 +49,22 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+Positioning.o \
 main.o \
 SearchAndFindGurra.o
 
 OBJS_AS_ARGS +=  \
+Positioning.o \
 main.o \
 SearchAndFindGurra.o
 
 C_DEPS +=  \
+Positioning.d \
 main.d \
 SearchAndFindGurra.d
 
 C_DEPS_AS_ARGS +=  \
+Positioning.d \
 main.d \
 SearchAndFindGurra.d
 
@@ -77,6 +82,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
